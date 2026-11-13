@@ -81,6 +81,16 @@
   overflow-wrap: anywhere;
 }
 
+.product-view-barcode-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 9px; }
+.product-view-barcode-actions .admin-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.product-view-barcode { display: grid; justify-items: start; gap: 4px; margin-top: 7px; }
+.product-view-barcode img { display: block; width: min(100%, 290px); height: 58px; padding: 5px 8px; object-fit: contain; object-position: left center; border: 1px solid var(--admin-line); border-radius: 5px; background: #fff; }
+.product-view-barcode small { color: var(--admin-muted); font-size: 10px; line-height: 1.4; }
+.product-view-barcode small strong { display: inline; color: var(--admin-ink); font: inherit; overflow-wrap: anywhere; }
+.product-view-barcode .product-view-barcode-empty { color: var(--admin-muted); font-weight: 500; }
+.product-view-barcode .product-view-barcode-error { color: #a8443d; }
+.product-view-unit-description { display: block; }
+
 @media (max-width: 760px) {
   .product-view-card { padding: 15px; }
   .product-view-card-heading { align-items: flex-start; }

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi";
-import { getErrorMessage, getResource, listResource } from "../services/adminApi";
+import { FiArrowLeft, FiDownload } from "react-icons/fi";
+import { toast } from "sonner";
+import { downloadProductBarcodePdf, getErrorMessage, getResource, listResource } from "../services/adminApi";
 import { EmptyState, LoadingState } from "../components/AdminPrimitives";
 import { getImageUrl } from "../../../utils/imageUrl";
 import defaultImage from "../../../assets/image-not-available-optimized.webp";
@@ -42,6 +43,33 @@ function keyFeatures(value) {
 
 const money = (value) => value === null || value === undefined || value === "" ? EMPTY_VALUE : <DirhamAmount value={value} />;
 
+function BarcodePreview({ sku, svg }) {
+    if (!sku) return <small className="product-view-barcode-empty">Barcode will be generated with the PDF.</small>;
+
+    return (
+        <div className="product-view-barcode">
+            {svg
+                ? <img src={svg} alt={`Code 128 barcode for ${sku}`} loading="lazy" />
+                : <small className="product-view-barcode-error">SKU needs 1 to 36 printable ASCII characters for Code 128.</small>}
+            <small>Barcode / SKU: <strong>{sku}</strong></small>
+        </div>
+    );
+}
+
+async function barcodeRequestErrorMessage(requestError) {
+    const payload = requestError?.response?.data;
+    if (payload instanceof Blob) {
+        try {
+            const parsed = JSON.parse(await payload.text());
+            const detail = Object.values(parsed).flat().find((value) => typeof value === "string");
+            if (detail) return detail;
+        } catch {
+            // Fall back to the shared API error formatter.
+        }
+    }
+    return getErrorMessage(requestError, "Could not generate the product barcodes.");
+}
+
 export default function ProductView() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -50,6 +78,8 @@ export default function ProductView() {
     const [references, setReferences] = useState({ categories: [], subcategories: [], offers: [], colors: [], unitTypes: [], units: [] });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [barcodeDownloading, setBarcodeDownloading] = useState(false);
+    const [dataRevision, setDataRevision] = useState(0);
 
     useEffect(() => {
         let active = true;
@@ -81,7 +111,7 @@ export default function ProductView() {
         }
         load();
         return () => { active = false; };
-    }, [id]);
+    }, [dataRevision, id]);
 
     useEffect(() => {
         let active = true;
@@ -106,6 +136,33 @@ export default function ProductView() {
     }, []);
 
     const lookupLabel = (value, collection) => labelOf(collection.find((item) => String(idOf(item)) === String(idOf(value))) || value);
+    const sellableBarcodeCount = variants.reduce(
+        (count, variant) => count + (variant.price_type === "multiple" ? variant.units.length : 1),
+        0
+    );
+
+    const downloadBarcodes = async () => {
+        setBarcodeDownloading(true);
+        try {
+            const response = await downloadProductBarcodePdf(id);
+            const pdf = new Blob([response.data], { type: "application/pdf" });
+            const url = URL.createObjectURL(pdf);
+            const link = document.createElement("a");
+            const safeName = String(product.name || "product").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `product-${id}`;
+            link.href = url;
+            link.download = `${safeName}-barcodes.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+            toast.success("Barcode PDF downloaded");
+            setDataRevision((current) => current + 1);
+        } catch (requestError) {
+            toast.error(await barcodeRequestErrorMessage(requestError));
+        } finally {
+            setBarcodeDownloading(false);
+        }
+    };
 
     if (loading) return <div className="admin-page"><LoadingState label="Loading product..." /></div>;
     if (error) return <div className="admin-page"><div className="admin-form-error product-editor-error">{error}</div><button className="admin-button secondary" onClick={() => navigate("/admin-dashboard/products")}><FiArrowLeft /> Back to Products</button></div>;
@@ -157,7 +214,12 @@ export default function ProductView() {
             <section className="product-view-card">
                 <div className="product-view-card-heading">
                     <div><h3>Variants</h3><p>Colors, pricing, stock, units, and images.</p></div>
-                    <span className="product-view-count">{variants.length} {variants.length === 1 ? "variant" : "variants"}</span>
+                    <div className="product-view-barcode-actions">
+                        <span className="product-view-count">{variants.length} {variants.length === 1 ? "variant" : "variants"}</span>
+                        <button type="button" className="admin-button primary" onClick={downloadBarcodes} disabled={barcodeDownloading || !sellableBarcodeCount}>
+                            <FiDownload aria-hidden="true" /> {barcodeDownloading ? "Preparing PDF…" : "Generate & download PDF"}
+                        </button>
+                    </div>
                 </div>
                 {variants.length ? variants.map((variant, index) => {
                     const primary = variant.images.find((image) => image.is_primary) || variant.images[0];
@@ -167,11 +229,11 @@ export default function ProductView() {
                             <div>
                                 <strong>{colorLabel !== EMPTY_VALUE ? colorLabel : `Variant ${index + 1}`}</strong>
                                 <span>{variant.price_type === "multiple" ? "Multiple price" : <>Single price · {money(variant.price)} · Stock {variant.stock ?? 0}</>}</span>
-                                {variant.sku && <small>SKU: {variant.sku}</small>}
+                                {variant.price_type === "single" && <BarcodePreview sku={variant.sku} svg={variant.barcode_svg} />}
                             </div>
                             {primary?.image && <img src={getImageUrl(primary.image)} alt={colorLabel} onError={(event) => { event.currentTarget.src = defaultImage; }} />}
                         </div>
-                        {variant.price_type === "multiple" && <div className="product-view-units"><div className="product-view-units-heading"><span>Unit</span><span>Price / Stock</span></div>{variant.units.map((unit, unitIndex) => <div key={idOf(unit) || unitIndex}><span>{lookupLabel(unit.unit_type, references.unitTypes)} / {lookupLabel(unit.unit, references.units)}{unit.grade && <small>Grade: {unit.grade}</small>}{unit.sku && <small>SKU: {unit.sku}</small>}</span><strong>{money(unit.price)} · Stock {unit.stock ?? 0}</strong></div>)}</div>}
+                        {variant.price_type === "multiple" && <div className="product-view-units"><div className="product-view-units-heading"><span>Unit</span><span>Price / Stock</span></div>{variant.units.map((unit, unitIndex) => <div className="product-view-unit-row" key={idOf(unit) || unitIndex}><span className="product-view-unit-description">{lookupLabel(unit.unit_type, references.unitTypes)} / {lookupLabel(unit.unit, references.units)}{unit.grade && <small>Grade: {unit.grade}</small>}<BarcodePreview sku={unit.sku} svg={unit.barcode_svg} /></span><strong>{money(unit.price)} · Stock {unit.stock ?? 0}</strong></div>)}</div>}
                         <div className="product-view-images">{variant.images.length ? variant.images.map((image, imageIndex) => <img key={idOf(image) || imageIndex} src={getImageUrl(image.image)} alt={`${product.name} ${colorLabel} image ${imageIndex + 1}`} onError={(event) => { event.currentTarget.src = defaultImage; }} />) : <img src={defaultImage} alt="Default product" />}</div>
                     </article>;
                 }) : <EmptyState title="No variants" description="This product has no variants yet." />}

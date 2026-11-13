@@ -23,6 +23,9 @@ export const deleteResource = (resource, id) =>
 export const duplicateResource = (resource, id) =>
     client.post(`${resourceUrl(resource, id)}duplicate/`);
 
+export const downloadProductBarcodePdf = (productId) =>
+    client.post(`${resourceUrl("products", productId)}barcodes-pdf/`, {}, { responseType: "blob" });
+
 export const setPrimaryResource = (resource, id) =>
     client.post(`${resourceUrl(resource, id)}set-primary/`);
 
