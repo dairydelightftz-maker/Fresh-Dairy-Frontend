@@ -1,44 +1,43 @@
 :root {
-  /* ===== LIFE-LINE BRAND DESIGN TOKENS ===== */
+  /* ===== FRESH DAIRY DELIGHT BRAND TOKENS ===== */
 
-  /* Lifeline Medical Supplies brand palette */
-  --lifeline-navy: #15365B;
-  --lifeline-green: #2F8D45;
-  --lifeline-slate: #53616D;
-  --lifeline-soft-grey: #F3F6F8;
-  --lifeline-white: #FFFFFF;
+  --fresh-dairy-navy: #07517F;
+  --fresh-dairy-blue: #1685C8;
+  --fresh-dairy-slate: #536E80;
+  --fresh-dairy-soft: #F2F9FC;
+  --fresh-dairy-white: #FFFFFF;
 
   /* Compatibility aliases used by existing storefront components */
-  --primary-orange: var(--lifeline-green);
-  --primary-orange-hover: #246D36;
-  --primary-orange-light: #EAF4ED;
-  --primary-orange-bg: rgba(47, 141, 69, 0.08);
+  --primary-orange: var(--fresh-dairy-blue);
+  --primary-orange-hover: #0D659D;
+  --primary-orange-light: #EAF7FC;
+  --primary-orange-bg: rgba(22, 133, 200, 0.08);
 
   /* Slate Colors */
-  --primary-slate: var(--lifeline-navy);
-  --primary-slate-hover: #102B49;
-  --primary-slate-light: var(--lifeline-slate);
+  --primary-slate: var(--fresh-dairy-navy);
+  --primary-slate-hover: #063E62;
+  --primary-slate-light: var(--fresh-dairy-slate);
   --primary-slate-muted: #7A8790;
 
   /* Background & Surfaces */
-  --background: var(--lifeline-white);
-  --surface-card: var(--lifeline-white);
-  --surface-elevated: var(--lifeline-white);
+  --background: var(--fresh-dairy-white);
+  --surface-card: var(--fresh-dairy-white);
+  --surface-elevated: var(--fresh-dairy-white);
 
   /* Text */
-  --text-primary: var(--lifeline-navy);
-  --text-secondary: var(--lifeline-slate);
+  --text-primary: var(--fresh-dairy-navy);
+  --text-secondary: var(--fresh-dairy-slate);
   --text-muted: #7A8790;
-  --text-on-dark: var(--lifeline-white);
+  --text-on-dark: var(--fresh-dairy-white);
 
   /* Borders */
-  --border-color: #D9E2E8;
-  --border-light: #E8EEF1;
+  --border-color: #D7EAF4;
+  --border-light: #EAF3F8;
 
   /* Misc */
-  --shadow-sm: 0 2px 8px rgba(21, 54, 91, 0.06);
-  --shadow-md: 0 8px 24px rgba(21, 54, 91, 0.08);
-  --shadow-lg: 0 16px 40px rgba(21, 54, 91, 0.10);
+  --shadow-sm: 0 2px 8px rgba(7, 81, 127, 0.06);
+  --shadow-md: 0 8px 24px rgba(7, 81, 127, 0.08);
+  --shadow-lg: 0 16px 40px rgba(7, 81, 127, 0.10);
 }
 
 body {
@@ -63,8 +62,8 @@ html {
 
 /* Selection highlight using brand color */
 ::selection {
-  background: rgba(47, 141, 69, 0.2);
-  color: #15365B;
+  background: rgba(22, 133, 200, 0.2);
+  color: #07517F;
 }
 
 /* --- Global Skeleton Loading --- */

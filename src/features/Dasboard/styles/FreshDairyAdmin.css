@@ -1,0 +1,89 @@
+:root {
+    --admin-brand: #1685c8;
+    --admin-brand-dark: #0d659d;
+    --admin-button-brand: #1685c8;
+    --admin-ink: #123c59;
+    --admin-muted: #607b8d;
+    --admin-bg: #f2f9fc;
+    --admin-line: #d7eaf4;
+    --admin-focus: rgba(22, 133, 200, .28);
+}
+
+.admin-app {
+    background: #f2f9fc;
+}
+
+.admin-app .admin-brand {
+    gap: 9px;
+    padding: 0 15px;
+}
+
+.admin-app .admin-brand-logo {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    place-items: center;
+    overflow: hidden;
+}
+
+.admin-app .admin-brand-logo img {
+    position: static;
+    display: block;
+    width: 48px;
+    max-width: 100%;
+    height: 48px;
+    object-fit: contain;
+}
+
+.admin-app .admin-brand-copy {
+    min-width: 0;
+}
+
+.admin-app .admin-brand-copy strong {
+    color: var(--admin-ink);
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.admin-app .admin-brand-copy small {
+    color: var(--admin-brand);
+    font-size: 8px;
+    letter-spacing: .13em;
+}
+
+.admin-app .admin-nav-item:hover,
+.admin-app .admin-nav-item.active {
+    background: #e7f5fc;
+    color: var(--admin-brand-dark);
+}
+
+.admin-app .admin-nav-item.active {
+    font-weight: 800;
+}
+
+.admin-app .admin-button.primary,
+.admin-app .hero-save-button,
+.admin-app .admin-pagination-actions button.active {
+    border-color: var(--admin-brand);
+    background: var(--admin-brand);
+    color: #fff;
+}
+
+.admin-app .admin-button.primary:hover,
+.admin-app .hero-save-button:hover {
+    border-color: var(--admin-brand-dark);
+    background: var(--admin-brand-dark);
+}
+
+.admin-app input:focus,
+.admin-app select:focus,
+.admin-app textarea:focus {
+    border-color: var(--admin-brand);
+    box-shadow: 0 0 0 3px var(--admin-focus);
+}
+
+@media (max-width: 760px) {
+    .admin-app .admin-brand { padding-right: 58px; }
+}

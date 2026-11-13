@@ -1,14 +1,25 @@
-# Lifeline Medical Supplies
+# The Fresh Dairy Delight FZE
 
-Lifeline Medical Supplies is a medical-supplies storefront that helps organisations source dependable healthcare supplies with clear product information and practical service.
+The Fresh Dairy Delight FZE is a dairy products manufacturer established on 7 July 2025. Its brand line is “Savoring Tradition, Nourishing Love.”
+
+## Product range
+
+- Paneer: fresh, malai, and flavoured varieties including garlic and herb, lemongrass and ginger, mint, smoked paprika, chilli, cayenne pepper and cumin, cranberry and orange, fig and honey, pineapple and coconut, sweet mango, basil and sun, garam masala and coriander, and saffron and cardamom.
+- Kulfi and rabri: malai kulfi, matka kulfi, and rabri.
+- Sweets: Motichur laddu, Bundi laddu, jilebi, kaju mix, and emarti. Sweets are made to order; customers should contact the company to confirm preparation and delivery timing.
+- Yogurt, buttermilk, and khoya: enquire for availability and pricing.
 
 ## Public pages
 
-- Home: https://lifelinemedsup.com/
-- Shop: https://lifelinemedsup.com/shop
-- Products: https://lifelinemedsup.com/products
-- Offers: https://lifelinemedsup.com/offers
-- About: https://lifelinemedsup.com/about
-- Contact: https://lifelinemedsup.com/contact
+- Home: /
+- Products: /shop
+- About: /about
+- Contact: /contact
 
-For availability and quotations, visitors should use the contact page or the product enquiry flow. Do not infer prices, stock, certifications, delivery terms, or medical claims that are not displayed in the product data.
+## Contact
+
+- +97152539846
+- +971525418705
+- Landline: 065299221
+
+The listed phone numbers are provided for calls and WhatsApp enquiries. Product prices are shown on the website where supplied by the company. Do not infer stock, package sizes, certifications, delivery terms, or health claims that are not stated.

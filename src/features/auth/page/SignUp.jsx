@@ -151,7 +151,7 @@ function Signup() {
 
                         <h1>Create Account</h1>
 
-                        <p>Create your life-line account and start shopping.</p>
+                        <p>Create your Fresh Dairy Delight account and start shopping.</p>
 
                     </div>
 

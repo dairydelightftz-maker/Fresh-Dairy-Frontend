@@ -631,8 +631,8 @@ function Single_product() {
         const selectedImage = activeImage
             || selectedVariant.images?.find((image) => image.is_primary)?.image
             || selectedVariant.images?.[0]?.image;
-        const imageUrl = selectedImage ? getImageUrl(selectedImage) : "/life-line.webp";
-        const description = (descriptionText || `Shop ${productHeading} at LIFE-LINE.`)
+        const imageUrl = selectedImage ? getImageUrl(selectedImage) : "/fresh-dairy-logo-blue.png";
+        const description = (descriptionText || `Discover ${productHeading} from The Fresh Dairy Delight FZE.`)
             .replace(/\s+/g, " ")
             .slice(0, 200);
         const url = new URL(
@@ -646,7 +646,7 @@ function Single_product() {
         ).href;
 
         return updateProductMetadata({
-            title: `${productHeading} | LIFE-LINE`,
+            title: `${productHeading} | The Fresh Dairy Delight FZE`,
             description,
             url,
             image: imageUrl,
@@ -864,8 +864,8 @@ function Single_product() {
             storage: selectedStorageLabel,
         });
         const shareUrl = new URL(sharePath, window.location.origin).href;
-        const shareTitle = `${productHeading} | LIFE-LINE`;
-        const shareText = `Check out ${productHeading} on LIFE-LINE.`;
+        const shareTitle = `${productHeading} | The Fresh Dairy Delight FZE`;
+        const shareText = `Check out ${productHeading} from The Fresh Dairy Delight FZE.`;
 
         try {
             if (typeof navigator !== "undefined" && typeof navigator.share === "function") {

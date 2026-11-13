@@ -145,7 +145,7 @@ function Login() {
 
                         <h1>Welcome Back</h1>
 
-                        <p>Login to your Lifeline Medical Supplies account to continue shopping.</p>
+                        <p>Sign in to The Fresh Dairy Delight FZE to continue with your orders.</p>
 
                         {errorMessage && <p className="admin-login-error" role="alert">{errorMessage}</p>}
 

@@ -42,7 +42,7 @@ function New_Arrival_Home({
     products,
     totalCount,
     title = "New Arrivals",
-    subtitle = "Explore the latest available medical supplies.",
+    subtitle = "Explore fresh dairy favourites and traditional sweets.",
     viewAllTo = "/shop?sort=new",
     showNewBadge = false,
     tone = "new",

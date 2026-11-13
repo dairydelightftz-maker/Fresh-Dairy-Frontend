@@ -8,7 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaHeart } from "react-icons/fa6";
 import { FiGrid, FiHome, FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
-import navbarlogo from './../assets/lifeline-logo-optimized.webp';
+import navbarlogo from './../assets/fresh-dairy-logo-blue.png';
 
 import WishlistQuery from "../features/wishlist/queries/WishlistQuery.jsx";
 import Offer_Query from "../hooks/offers/queries/Offer_Query.jsx";
@@ -80,9 +80,7 @@ const cartLength = cart.total_items ?? 0;
         { name: "Shop", path: "/shop" },
         { name: "Categories", dropdown: true },
         { name: "New Arrivals", path: "/shop?sort=new" },
-        { name: "Offers", path: "/shop?offer=true", offer: offerActive },
         { name: "About", path: "/about" },
-        { name: "Contact", path: "/contact" },
     ];
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -173,7 +171,8 @@ const cartLength = cart.total_items ?? 0;
 
                     <div className="nav_main2">
                         <NavLink to='/' className="logo-link topbar-logo-link">
-                            <img src={navbarlogo} alt="Life-line Medical Supplies" className="navbar-logo topbar-logo" width="900" height="332" decoding="async" />
+                            <img src={navbarlogo} alt="" className="navbar-logo topbar-logo fresh-dairy-nav-logo" width="1200" height="1200" decoding="async" />
+                            <span className="fresh-brand-copy"><strong>Fresh Dairy Delight</strong><small>FZE · EST. 2025</small></span>
                         </NavLink>
 
                         <div className="link_flex">
@@ -338,7 +337,8 @@ const cartLength = cart.total_items ?? 0;
             <div id="mobile-navigation" className={`mobile_menu ${menuOpen ? "show" : ""}`}>
                 <div className="mobile_header">
                     <NavLink to='/' className="logo-link" style={{ marginTop: '5px' }}>
-                        <img src={navbarlogo} alt="Life-line Medical Supplies" className="navbar-logo" width="900" height="332" decoding="async" />
+                        <img src={navbarlogo} alt="" className="navbar-logo fresh-dairy-nav-logo" width="1200" height="1200" decoding="async" />
+                        <span className="fresh-brand-copy"><strong>Fresh Dairy Delight</strong><small>FZE · EST. 2025</small></span>
                     </NavLink>
                     <button type="button" className="mobile-close-button" onClick={() => setMenuOpen(false)} aria-label="Close navigation menu"><IoClose size={25} /></button>
                 </div>
@@ -362,15 +362,9 @@ const cartLength = cart.total_items ?? 0;
                         </li>
                     )}
 
-                    {offerActive && (
-
-                        <li><NavLink to="/shop?offer=true" className="mobile-menu-link" onClick={closeMenu}><span>Offers</span><FaAngleRight aria-hidden="true" /></NavLink></li>
-                    )}
-
                     <li><NavLink to="/shop?sort=new" className="mobile-menu-link" onClick={closeMenu}><span>New Arrivals</span><FaAngleRight aria-hidden="true" /></NavLink></li>
 
-                    <li><NavLink to="/about" className="mobile-menu-link" onClick={closeMenu}><span>About Us</span><FaAngleRight aria-hidden="true" /></NavLink></li>
-                    <li><NavLink to="/contact" className="mobile-menu-link" onClick={closeMenu}><span>Contact Us</span><FaAngleRight aria-hidden="true" /></NavLink></li>
+                    <li><NavLink to="/about" className="mobile-menu-link" onClick={closeMenu}><span>Our Story</span><FaAngleRight aria-hidden="true" /></NavLink></li>
                 </ul>
             </div>
 
@@ -382,7 +376,7 @@ const cartLength = cart.total_items ?? 0;
                 </NavLink>
                 <NavLink to="/shop" className="mobile_bottom_item">
                     <span className="mobile_bottom_icon"><FiGrid size={22} /></span>
-                    <span className="mobile_bottom_label">Categories</span>
+                    <span className="mobile_bottom_label">Shop</span>
                 </NavLink>
                 <NavLink to="/profile" className="mobile_bottom_item">
                     <span className="mobile_bottom_icon"><CgProfile size={22} /></span>

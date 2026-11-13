@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./../Contact.css"
 import { getAuthValue } from "../features/auth/authUtils";
-import { WHATSAPP_NUMBER } from "../config/contact";
+import { WHATSAPP_DISPLAY_NUMBER, WHATSAPP_NUMBER } from "../config/contact";
 
 const ContactUs = () => {
     const [formData, setFormData] = useState(() => ({
@@ -58,7 +58,7 @@ Thank you.`;
     };
 
     return (
-        <div className="contact-page">
+        <section id="contact" className="contact-page" aria-labelledby="contact-heading">
 
             <div className="contact-header">
 
@@ -66,15 +66,13 @@ Thank you.`;
                     CONTACT US
                 </span>
 
-                <h1>
-                    Enquire about medical supplies
-                </h1>
+                <h2 id="contact-heading">
+                    Talk to The Fresh Dairy Delight
+                </h2>
 
                 <p>
-                    Contact our team to enquire about availability,
-                    product information and quotations.
-                    Fill out the form below and send us
-                    a message directly on WhatsApp.
+                    Ask about paneer, kulfi, rabri or sweets. Our sweets are made to order;
+                    message us to confirm availability and preparation or delivery timing.
                 </p>
 
             </div>
@@ -85,38 +83,45 @@ Thank you.`;
 
                 <div className="contact-info">
 
-                    <h2>Contact our team</h2>
+                    <h2>Call or WhatsApp</h2>
+
+                    <div className="fresh-contact-numbers">
+                        <div className="fresh-contact-number">
+                            <a href={`tel:+${WHATSAPP_NUMBER}`}>{WHATSAPP_DISPLAY_NUMBER}</a>
+                            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" aria-label={`WhatsApp ${WHATSAPP_DISPLAY_NUMBER}`}>WhatsApp</a>
+                        </div>
+                    </div>
 
                     <div className="info-box">
 
-                        <h4>Enquiries</h4>
+                        <h4>Product enquiries</h4>
 
                         <p>
-                            Availability and quotations
+                            Paneer, kulfi, rabri and Indian sweets
                         </p>
 
                         <p>
-                            Share the products or categories you need.
+                            Tell us which products you are interested in.
                         </p>
 
                     </div>
 
                     <div className="info-box">
 
-                        <h4>What to include</h4>
+                        <h4>Made to order</h4>
 
                         <p>
-                            Include quantities, preferred specifications and any timing requirements when known.
+                            Sweets are made to order. Please ask us to confirm preparation and delivery timing.
                         </p>
 
                     </div>
 
                     <div className="info-box">
 
-                        <h4>Product details</h4>
+                        <h4>Our dairy range</h4>
 
                         <p>
-                            Send us a WhatsApp message and our team will follow up with practical next steps.
+                            Contact us for current availability and pricing for yogurt, buttermilk and khoya.
                         </p>
 
                     </div>
@@ -211,7 +216,7 @@ Thank you.`;
                             </option>
 
                             <option>
-                                Supply support
+                                Order timing
                             </option>
 
                             <option>
@@ -251,7 +256,7 @@ Thank you.`;
 
             </div>
 
-        </div>
+        </section>
     );
 };
 

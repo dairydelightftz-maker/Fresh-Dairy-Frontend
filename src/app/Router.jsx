@@ -14,7 +14,6 @@ const About = lazy(() => import('../features/About/page/About'))
 const Profile = lazy(() => import('../features/Profile/page/Profile'))
 const MyOrder = lazy(() => import('../features/myOrders/page/My_orders'))
 const PaymentSuccess = lazy(() => import('../features/cart/page/PaymentSuccess'))
-const ContactUs = lazy(() => import('../components/Contact'))
 const Login = lazy(() => import('../features/auth/page/Login'))
 const AdminLogin = lazy(() => import('../features/auth/page/AdminLogin'))
 const Signup = lazy(() => import('../features/auth/page/SignUp'))
@@ -158,7 +157,7 @@ function Router() {
                     path="/payment-success"
                     element={<PaymentSuccess />}
                 />
-                <Route path='contact' element={<ContactUs />} />
+                <Route path='contact' element={<Navigate to="/#contact" replace />} />
 
               </Routes>
             </Suspense>

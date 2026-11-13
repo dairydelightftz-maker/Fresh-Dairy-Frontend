@@ -4,7 +4,7 @@ import client from "../../../lib/ApiClient";
 import "../styles/Invoice.css";
 import { getImageUrl } from "../../../utils/imageUrl";
 import DirhamAmount from "../../../components/DirhamAmount";
-import { CONTACT_EMAIL } from "../../../config/contact";
+import { WHATSAPP_CONTACTS } from "../../../config/contact";
 
 const Invoice = () => {
 
@@ -112,15 +112,15 @@ const Invoice = () => {
                     <div className="invoice-company">
 
                         <h1>
-                            life-line
+                            The Fresh Dairy Delight FZE
                         </h1>
 
                         <p>
-                            Project location to be configured
+                            Dairy Products Manufacturing
                         </p>
 
                         <p>
-                            {CONTACT_EMAIL}
+                            Call or WhatsApp: {WHATSAPP_CONTACTS.map((contact) => contact.label).join(" · ")}
                         </p>
 
                     </div>
@@ -411,7 +411,7 @@ const Invoice = () => {
 
                         <p>
                             Thank you for shopping with
-                            <strong> life-line </strong>.
+                            <strong> The Fresh Dairy Delight FZE </strong>.
                         </p>
 
                         <p>
@@ -420,10 +420,10 @@ const Invoice = () => {
                         </p>
 
                         <p>
-                            Email :
+                            Call or WhatsApp:
                             <strong>
                                 {" "}
-                                {CONTACT_EMAIL}
+                                {WHATSAPP_CONTACTS.map((contact) => contact.label).join(" · ")}
                             </strong>
                         </p>
 

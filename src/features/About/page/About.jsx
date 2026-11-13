@@ -1,111 +1,35 @@
-import React, { useEffect, useRef } from "react";
-import '../styles/About.css';
+import { Link } from "react-router-dom";
+import brandLogo from "../../../assets/fresh-dairy-logo-blue.png";
+import "../../home/FreshDairy.css";
 
-import brandLogo from "../../../assets/lifeline-logo-optimized.webp";
+const values = [
+    { title: "Quality", text: "We choose fresh ingredients and prepare each product with care." },
+    { title: "Tradition", text: "We honour the Indian dairy-making traditions behind the flavours we share." },
+    { title: "Love", text: "We put care into every batch, from paneer to festive sweets." },
+    { title: "Community", text: "We believe good food brings people together around the table." },
+];
 
-import { useNavigate } from "react-router-dom";
+export default function About() {
+    return <main className="fresh-about-page">
+        <section className="fresh-about-hero">
+            <div><span className="fresh-kicker">THE FRESH DAIRY DELIGHT FZE</span><h1>Made with care.<br /><em>Rooted in tradition.</em></h1><p>Established on 7 July 2025, The Fresh Dairy Delight FZE makes paneer, kulfi and Indian sweets with a love for familiar flavours and thoughtful preparation.</p><Link to="/shop" className="fresh-button fresh-button-primary">Explore products</Link></div>
+            <img src={brandLogo} alt="The Fresh Dairy Delight FZE blue logo" />
+        </section>
 
-const About = () => {
-    const navigate = useNavigate();
+        <section className="fresh-about-section">
+            <span className="fresh-kicker">ABOUT US</span><h2>Tradition, shared at your table</h2>
+            <p>At The Fresh Dairy Delight, we are passionate about bringing the taste of traditional Indian dairy products to your table. Our makers bring experience to every recipe, and our range includes fresh paneer, flavoured paneer, traditional kulfi, rabri and sweets. Yogurt, buttermilk and khoya are also part of our dairy range; please contact us for availability and pricing.</p>
+            <p>Our work is guided by a simple idea: “Aam janata ky haq main kam karo”—work for the welfare of all. We aim to serve our community with wholesome, delicious dairy products that bring people together.</p>
+        </section>
 
-    const pillars = [
-        {
-            title: "Reliable sourcing",
-            text: "We organise healthcare supplies with clear product information so teams can make practical sourcing decisions."
-        },
-        {
-            title: "Practical service",
-            text: "Our team provides a straightforward route to product enquiries, availability checks and quotations."
-        },
-        {
-            title: "Quality-minded",
-            text: "We aim to present dependable medical supplies accurately and communicate what we can support."
-        }
-    ];
+        <section className="fresh-about-values">
+            <div className="fresh-about-values-inner"><span className="fresh-kicker">WHAT GUIDES US</span><h2>Our mission &amp; values</h2>
+                <p className="fresh-about-mission">Our mission is to become a trusted name in traditional Indian dairy products through quality, authenticity and customer care—preserving the techniques we value while responding to the needs of our customers.</p>
+                <div className="fresh-values-grid">{values.map((value) => <article className="fresh-value-card" key={value.title}><h3>{value.title}</h3><p>{value.text}</p></article>)}</div>
+            </div>
+        </section>
 
-    return (
-        <div className="about-modern-wrapper">
-            
-            {/* Hero Section */}
-            <section className="about-modern-hero about-fade">
-                <div className="hero-text-content">
-                    <span className="hero-eyebrow">LIFELINE MEDICAL SUPPLIES</span>
-                    <h1 className="hero-display">
-                        Medical supplies,<br />
-                        <span className="hero-italic">made easier to source.</span>
-                    </h1>
-                    <p className="hero-subtext">
-                        A dependable supply partner focused on quality, trust and practical service.
-                    </p>
-                    <button className="hero-modern-btn" onClick={() => navigate('/shop')}>
-                        Browse categories <span className="arrow">→</span>
-                    </button>
-                </div>
-                <div className="hero-image-content">
-                    <div className="image-frame">
-                        <img src={brandLogo} alt="Lifeline Medical Supplies" className="about-brand-image" />
-                    </div>
-                </div>
-            </section>
-
-            {/* Split Story Section */}
-            <section className="about-modern-story about-fade">
-                <div className="story-left">
-                    <div className="story-sticky">
-                        <h2>Built around <i>dependable supply</i>.</h2>
-                        <p>
-                            Lifeline Medical Supplies is positioned as a practical healthcare-supplies
-                            distributor and sourcing partner for organisations that value clarity and consistency.
-                        </p>
-                        <p>
-                            We keep the experience focused: organised categories, useful product information
-                            and a clear route to an enquiry or quotation.
-                        </p>
-
-                        <div className="story-highlights">
-                            <div className="highlight-box">
-                                <span className="highlight-title">Clear categories</span>
-                                <span className="highlight-text">Find the supply areas relevant to your organisation without unnecessary clutter.</span>
-                            </div>
-                            <div className="highlight-box">
-                                <span className="highlight-title">Straightforward enquiries</span>
-                                <span className="highlight-text">Contact our team to ask about availability and quotations.</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div className="story-right">
-                    <img src={brandLogo} alt="Lifeline Medical Supplies" className="story-vibe-img about-brand-image" />
-                </div>
-            </section>
-
-            {/* Values / Pillars - Humanized Grid */}
-            <section className="about-human-values about-fade">
-                <div className="values-header">
-                    <h2>Our Philosophy</h2>
-                    <p>Trust, quality and reliable supply guide our service.</p>
-                </div>
-                <div className="values-grid">
-                    {pillars.map((pillar, index) => (
-                        <div className="value-card" key={index}>
-                            <h3>{pillar.title}</h3>
-                            <p>{pillar.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Editorial Quote */}
-            <section className="about-modern-quote about-fade">
-                <blockquote>
-                    "Trust. Quality. Reliable supply."
-                </blockquote>
-                <div className="quote-author">— Lifeline Medical Supplies</div>
-            </section>
-
-        </div>
-    );
-};
-
-export default About;
+        <section className="fresh-philosophy-quote"><blockquote>“Savoring Tradition, Nourishing Love”</blockquote><p>The Fresh Dairy Delight FZE · Dairy Products Manufacturing</p></section>
+        <div className="fresh-about-cta"><Link to="/#contact" className="fresh-button fresh-button-primary">Talk to our team</Link></div>
+    </main>;
+}

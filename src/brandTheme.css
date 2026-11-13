@@ -1,17 +1,14 @@
-/* Lifeline Medical Supplies brand layer.
- * Source: Lifeline master brand system — navy, green, slate, soft grey and white.
- * This file intentionally sits after feature styles so legacy theme literals do not
- * leak into the reusable project surfaces.
- */
+/* Fresh Dairy Delight brand layer. Blue values follow the supplied company logo. */
 :root {
-    --brand-navy: #15365B;
-    --brand-green: #2F8D45;
-    --brand-green-dark: #246D36;
-    --brand-green-contrast: #246D36;
-    --brand-slate: #53616D;
-    --brand-soft: #F3F6F8;
-    --brand-line: #D9E2E8;
-    --brand-focus: rgba(47, 141, 69, .28);
+    --brand-navy: #07517F;
+    --brand-green: #1685C8;
+    --brand-green-dark: #0D659D;
+    --brand-green-contrast: #0D659D;
+    --brand-slate: #536E80;
+    --brand-soft: #F2F9FC;
+    --brand-line: #D7EAF4;
+    --brand-focus: rgba(22, 133, 200, .28);
+    --brand-white: #FFFFFF;
 
     --admin-ink: var(--brand-navy);
     --admin-muted: var(--brand-slate);
@@ -614,7 +611,7 @@ a.nav_link.active,
     border: 0;
 }
 
-/* Hero/media overlays keep text readable while using Lifeline navy as the anchor. */
+/* Hero/media overlays keep text readable against the Fresh Dairy blue palette. */
 .hero-split-layout {
     background: var(--brand-soft);
 }

@@ -300,3 +300,114 @@
         font-size: 11px;
     }
 }
+
+/* Fresh Dairy Delight brand layer */
+.footer.fresh-footer {
+    background: #0c4e78;
+    color: #fff;
+    padding: 46px max(6vw, calc((100vw - 1280px) / 2));
+    border-top: 0;
+}
+
+.fresh-footer .footer-container {
+    grid-template-columns: 1.35fr .75fr .8fr 1fr 1fr;
+    gap: 30px;
+}
+
+.fresh-footer .footer-column h3 {
+    color: #9eddf5;
+    font-size: 14px;
+    letter-spacing: .04em;
+}
+
+.fresh-footer .footer-column a,
+.fresh-footer .footer-column ul li {
+    color: rgba(255, 255, 255, .82);
+    text-decoration: none;
+}
+
+.fresh-footer .footer-column a:hover,
+.fresh-footer .footer-column ul li:hover {
+    color: #b9e8f8;
+}
+
+.fresh-footer .footer-column a:focus-visible {
+    outline-color: #a9e2f6;
+}
+
+.fresh-footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.fresh-footer-brand .footer-logo {
+    width: 96px;
+    height: 96px;
+    margin: 0 0 11px;
+    object-fit: contain;
+}
+
+.fresh-footer .fresh-footer-brand p {
+    margin: 0 0 5px;
+    color: #fff;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 17px;
+}
+
+.fresh-footer .fresh-footer-brand small,
+.fresh-footer .fresh-order-note p {
+    color: rgba(255, 255, 255, .72);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.fresh-footer-contact .contact li {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.fresh-footer-contact .contact li a {
+    white-space: nowrap;
+}
+
+.fresh-footer-contact .contact li .fresh-footer-whatsapp {
+    color: #a8e4f6;
+}
+
+.fresh-order-note p {
+    margin: 0 0 10px;
+}
+
+.fresh-order-note > a {
+    font-weight: 700;
+}
+
+.fresh-copyright {
+    height: auto;
+    min-height: 42px;
+    background: #073b5d;
+    color: rgba(255, 255, 255, .8);
+    padding: 10px 18px;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .fresh-footer .footer-container { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .fresh-footer .fresh-footer-brand { grid-column: span 1; }
+}
+
+@media (max-width: 768px) {
+    .fresh-footer { padding: 30px 18px calc(28px + 70px); }
+    .fresh-footer .footer-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
+    .fresh-footer .footer-column.brand { display: flex; grid-column: 1 / -1; align-items: flex-start; justify-content: flex-start; }
+    .fresh-footer-brand .footer-logo { width: 78px; height: 78px; }
+    .fresh-footer .footer-column h3 { font-size: 12px; }
+    .fresh-footer-contact .contact li { gap: 7px; }
+}
+
+@media (max-width: 380px) {
+    .fresh-footer .footer-container { grid-template-columns: 1fr; }
+    .fresh-footer .fresh-footer-brand { grid-column: auto; }
+}

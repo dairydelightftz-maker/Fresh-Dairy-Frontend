@@ -1,18 +1,16 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const SITE_URL = "https://lifelinemedsup.com";
-const DEFAULT_TITLE = "Lifeline Medical Supplies | Trust. Quality. Reliable supply.";
-const DEFAULT_DESCRIPTION = "Medical supplies, made easier to source. Contact Lifeline Medical Supplies for product availability and quotations.";
-const SHARE_IMAGE = `${SITE_URL}/lifeline-social-card.webp`;
+const DEFAULT_TITLE = "The Fresh Dairy Delight FZE | Savoring Tradition, Nourishing Love";
+const DEFAULT_DESCRIPTION = "Fresh paneer, traditional kulfi, rabri and Indian sweets from The Fresh Dairy Delight FZE. Call or WhatsApp us to enquire.";
+const SHARE_IMAGE = "/fresh-dairy-logo-blue.png";
 
 const routeMeta = [
     { match: /^\/$/, title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
-    { match: /^\/(shop|products)\/?$/, title: "Medical Supplies & Healthcare Products | Lifeline Medical Supplies", description: "Browse healthcare supplies and medical products from Lifeline Medical Supplies." },
-    { match: /^\/about\/?$/, title: "About Lifeline Medical Supplies", description: "Learn how Lifeline Medical Supplies helps organisations source dependable healthcare supplies." },
-    { match: /^\/offers\/?$/, title: "Medical Supply Offers | Lifeline Medical Supplies", description: "Explore current medical supply offers from Lifeline Medical Supplies." },
-    { match: /^\/contact\/?$/, title: "Contact Lifeline Medical Supplies", description: "Contact Lifeline Medical Supplies for product availability, quotations, and supply enquiries." },
-    { match: /^\/single\//, title: "Healthcare Product Details | Lifeline Medical Supplies", description: "View product information, variants, pricing, and availability from Lifeline Medical Supplies." },
+    { match: /^\/(shop|products)\/?$/, title: "Paneer, Kulfi & Indian Sweets | Fresh Dairy Delight", description: "Explore paneer varieties, traditional kulfi, rabri and made-to-order Indian sweets." },
+    { match: /^\/about\/?$/, title: "Our Story | The Fresh Dairy Delight FZE", description: "Learn about The Fresh Dairy Delight FZE, our dairy range, mission and values." },
+    { match: /^\/contact\/?$/, title: "Contact | The Fresh Dairy Delight FZE", description: "Call or WhatsApp The Fresh Dairy Delight FZE about paneer, kulfi, rabri and sweets." },
+    { match: /^\/single\//, title: "Product Details | The Fresh Dairy Delight FZE", description: "See product information and availability from The Fresh Dairy Delight FZE." },
 ];
 
 function setMeta(attribute, value, content) {
@@ -25,7 +23,7 @@ function setMeta(attribute, value, content) {
     element.setAttribute("content", content);
 }
 
-function SeoHead() {
+export default function SeoHead() {
     const location = useLocation();
 
     useEffect(() => {
@@ -34,17 +32,20 @@ function SeoHead() {
             title: DEFAULT_TITLE,
             description: DEFAULT_DESCRIPTION,
         };
-        const canonicalUrl = `${SITE_URL}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
+        const siteUrl = window.location.origin;
+        const canonicalUrl = new URL(pathname === "/" ? "/" : pathname.replace(/\/$/, ""), siteUrl).toString();
+        const shareImageUrl = new URL(SHARE_IMAGE, siteUrl).toString();
 
         document.title = metadata.title;
         setMeta("name", "description", metadata.description);
         setMeta("property", "og:title", metadata.title);
         setMeta("property", "og:description", metadata.description);
         setMeta("property", "og:url", canonicalUrl);
-        setMeta("property", "og:image", SHARE_IMAGE);
+        setMeta("property", "og:image", shareImageUrl);
+        setMeta("property", "og:site_name", "The Fresh Dairy Delight FZE");
         setMeta("name", "twitter:title", metadata.title);
         setMeta("name", "twitter:description", metadata.description);
-        setMeta("name", "twitter:image", SHARE_IMAGE);
+        setMeta("name", "twitter:image", shareImageUrl);
 
         let canonical = document.head.querySelector("link[rel=canonical]");
         if (!canonical) {
@@ -53,9 +54,25 @@ function SeoHead() {
             document.head.appendChild(canonical);
         }
         canonical.href = canonicalUrl;
+
+        let structuredData = document.getElementById("fresh-dairy-organization");
+        if (!structuredData) {
+            structuredData = document.createElement("script");
+            structuredData.id = "fresh-dairy-organization";
+            structuredData.type = "application/ld+json";
+            document.head.appendChild(structuredData);
+        }
+        structuredData.textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "The Fresh Dairy Delight FZE",
+            legalName: "The Fresh Dairy Delight FZE",
+            foundingDate: "2025-07-07",
+            url: siteUrl,
+            logo: shareImageUrl,
+            description: DEFAULT_DESCRIPTION,
+        });
     }, [location.pathname]);
 
     return null;
 }
-
-export default SeoHead;

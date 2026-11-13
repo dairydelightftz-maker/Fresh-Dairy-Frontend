@@ -941,3 +941,61 @@ a {
         display: none;
     }
 }
+
+/* Fresh Dairy Delight logo lockup */
+.topbar-logo-link {
+    justify-content: flex-start;
+    gap: 9px;
+    flex: 0 0 auto;
+    padding: 0 10px;
+}
+
+.topbar-logo-link .fresh-dairy-nav-logo {
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    object-fit: contain;
+}
+
+.fresh-brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    color: #07517f;
+    white-space: nowrap;
+}
+
+.fresh-brand-copy strong {
+    font: 750 14px/1.15 "Montserrat", Inter, sans-serif;
+    letter-spacing: -.025em;
+}
+
+.fresh-brand-copy small {
+    color: #1685c8;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.mobile_header .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+}
+
+.mobile_header .fresh-dairy-nav-logo {
+    width: 46px;
+    height: 46px;
+}
+
+@media (max-width: 1100px) {
+    .topbar-logo-link .fresh-dairy-nav-logo { width: 48px; height: 48px; flex-basis: 48px; }
+    .fresh-brand-copy strong { font-size: 12px; }
+    .fresh-brand-copy small { font-size: 8px; }
+}
+
+@media (max-width: 420px) {
+    .fresh-brand-copy strong { font-size: 11px; }
+    .mobile_header .fresh-dairy-nav-logo { width: 42px; height: 42px; }
+}
