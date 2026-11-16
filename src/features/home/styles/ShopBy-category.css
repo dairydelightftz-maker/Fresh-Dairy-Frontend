@@ -519,3 +519,34 @@
     }
 
 }
+
+/* On mobile, show category cards in centered rows instead of a two-row slider.
+   This keeps an incomplete final row centered (for example, 4 or 7 categories). */
+@media(max-width:680px) {
+    .category-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+        gap: 16px 14px;
+        padding: 8px 4px 12px;
+    }
+
+    .category-container.is-scrollable {
+        justify-content: center;
+    }
+}
+
+@media(max-width:600px) {
+    .category-container {
+        gap: 14px;
+        padding: 8px 4px 12px;
+    }
+}
+
+@media(max-width:380px) {
+    .category-container {
+        gap: 12px;
+        padding: 8px 4px 12px;
+    }
+}
