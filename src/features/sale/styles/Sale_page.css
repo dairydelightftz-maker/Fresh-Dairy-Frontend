@@ -45,6 +45,10 @@
     margin-bottom: 10px;
 }
 
+.page_title_collections {
+    color: var(--fresh-dairy-blue, #1685C8);
+}
+
 .title_description {
     max-width: 600px;
     color: #4B636D;

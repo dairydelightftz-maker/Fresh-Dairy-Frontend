@@ -86,7 +86,7 @@ function Sale() {
             {/* Header */}
             <div className="page_header">
                 <div className="page_head">
-                    <h1 className="page_title">
+                    <h1 className={`page_title ${!isOfferPage ? "page_title_collections" : ""}`}>
                         {isOfferPage
                             ? "Special Offers"
                             : "Shop All Collections"}
