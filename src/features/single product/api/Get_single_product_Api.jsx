@@ -12,4 +12,3 @@ export const GetsingleProduct = async (id) => {
 }
 
 
-
